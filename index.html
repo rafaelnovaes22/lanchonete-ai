@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Podrão.AI, a primeira lanchonete ai-first do Brasil</title>
+<meta name="description" content="Monte seu pedido clicando, a IA fecha a conta e manda no zap. Burger alto, fritas crocantes, entrega rápida.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#120b08;--sm:#1d130d;--ink:#fdf3e7;--mut:#d0b49a;--rd:#ff4d1c;--yw:#ffb800;--ln:rgba(253,243,231,.15);--rdx:20px}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:Archivo,system-ui,sans-serif;margin:0;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(55rem 28rem at 90% -5%,rgba(255,77,28,.16),transparent);pointer-events:none}
+::selection{background:var(--rd);color:#fff}
+img{display:block;max-width:100%}
+a{color:inherit}
+.d{font-family:"Archivo Black",Archivo,sans-serif;font-weight:400;line-height:.92;letter-spacing:-.02em;text-transform:uppercase}
+.pl{position:fixed;inset:0;z-index:200;background:#0c0705;display:flex;align-items:flex-end;justify-content:space-between;padding:5vw;transition:opacity .7s ease,visibility .7s}
+.pl.g{opacity:0;visibility:hidden}
+.pl b{font-family:"Archivo Black",sans-serif;font-size:clamp(2.6rem,10vw,7.5rem);line-height:1}
+.pl b i{font-style:normal;color:var(--rd)}
+.pl span{font-size:.8rem;letter-spacing:.35em;text-transform:uppercase;color:var(--mut)}
+.hd{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 4vw;border-bottom:1px solid transparent;transition:background .35s,border-color .35s}
+.hd.f{background:rgba(18,11,8,.86);backdrop-filter:blur(14px);border-color:var(--ln)}
+.hd-l{font-family:"Archivo Black",sans-serif;font-size:1.15rem;text-decoration:none}
+.hd-l i{font-style:normal;color:var(--rd)}
+.hd-n{display:flex;gap:2rem}
+.hd-n a{text-decoration:none;font-size:.82rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mut)}
+.hd-n a:hover{color:var(--yw)}
+.hd-c{background:var(--rd);color:#fff;border:0;border-radius:999px;padding:.8rem 1.6rem;font-weight:800;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;cursor:pointer;font-family:inherit}
+.hd-m{display:none;background:none;border:0;color:var(--ink);font-size:1.6rem;cursor:pointer}
+.hro{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.hro-i{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hro-v{position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,11,8,.6),rgba(18,11,8,.18) 40%,rgba(18,11,8,.94))}
+.hro-x{position:relative;padding:0 4vw 4vh}
+.hro-s{display:inline-block;font-size:.78rem;letter-spacing:.4em;text-transform:uppercase;color:var(--yw);border:1px solid rgba(255,184,0,.55);border-radius:999px;padding:.55rem 1.2rem;margin-bottom:1.4rem}
+.hro-t{font-size:clamp(2.8rem,10.5vw,9.5rem);margin:0}
+.hro-t em{font-style:normal;color:var(--rd)}
+.hro-p{max-width:34rem;color:#f2e4d2;font-size:clamp(1rem,1.6vw,1.2rem);line-height:1.6}
+.hro-a{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.8rem}
+.bt{display:inline-block;border-radius:999px;padding:1rem 2.1rem;font-weight:800;font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:1px solid transparent;font-family:inherit}
+.bt1{background:var(--rd);color:#fff}
+.bt1:hover{transform:translateY(-2px)}
+.bt2{border-color:var(--ln);color:var(--ink)}
+.bt2:hover{border-color:var(--yw);color:var(--yw)}
+.hro-f{position:relative;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ln);margin-top:3rem}
+.hro-f div{padding:1.2rem 4vw 1.6rem;border-left:1px solid var(--ln)}
+.hro-f div:first-child{border-left:0;padding-left:0}
+.hro-f b{font-family:"Archivo Black",sans-serif;font-size:clamp(1.3rem,2.4vw,2rem);display:block}
+.hro-f span{font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--mut)}
+.mq{border-top:1px solid var(--ln);border-bottom:1px solid var(--ln);overflow:hidden;background:var(--yw);color:#120b08;padding:.9rem 0}
+.mq-t{display:flex;gap:3rem;width:max-content;animation:mq 20s linear infinite;font-family:"Archivo Black",sans-serif;text-transform:uppercase;font-size:1rem;letter-spacing:.06em;white-space:nowrap}
+@keyframes mq{to{transform:translateX(-50%)}}
+.mn{padding:14vh 4vw;max-width:90rem}
+.mn p{font-size:clamp(1.6rem,4.2vw,3.4rem);line-height:1.25;margin:0;font-weight:700}
+.mn em{font-style:normal;color:var(--rd)}
+.sc{padding:8vh 4vw}
+.sc-h{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;border-bottom:1px solid var(--ln);padding-bottom:1.2rem;margin-bottom:2.5rem}
+.sc-h h2{font-family:"Archivo Black",sans-serif;font-weight:400;font-size:clamp(1.9rem,5vw,3.8rem);margin:0}
+.sc-h span{color:var(--mut);font-size:.8rem;letter-spacing:.3em;text-transform:uppercase}
+.card{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--ln);border-radius:calc(var(--rdx) + 6px);overflow:hidden;margin:0 4vw 1.2rem;background:var(--sm)}
+.card img{width:100%;height:100%;min-height:340px;object-fit:cover}
+.card-t{padding:3rem}
+.card-t e{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--yw);font-weight:800}
+.card-t h3{font-family:"Archivo Black",sans-serif;font-weight:400;font-size:clamp(1.6rem,3.4vw,2.4rem);margin:.6rem 0}
+.card-t p{color:var(--mut);line-height:1.7}
+.card-t ul{list-style:none;margin:1.2rem 0;padding:0;color:var(--mut);line-height:2}
+.card-t f{display:flex;justify-content:space-between;align-items:center;margin-top:1.4rem;gap:1rem;flex-wrap:wrap}
+.card-t f b{font-family:"Archivo Black",sans-serif;font-size:1.8rem;color:var(--yw)}
+.qty{display:flex;align-items:center;gap:.8rem}
+.qty button{width:44px;height:44px;border-radius:50%;border:1px solid var(--ln);background:none;color:var(--ink);font-size:1.3rem;cursor:pointer}
+.qty button:hover{border-color:var(--rd)}
+.qty b{min-width:2ch;text-align:center;font-size:1.2rem}
+.cart{position:sticky;bottom:1.2rem;z-index:120;margin:0 4vw;background:var(--rd);color:#fff;border-radius:20px;padding:1.2rem 1.6rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.cart b{font-family:"Archivo Black",sans-serif;font-size:1.3rem}
+.cart button{background:#fff;color:#c22e00;border:0;border-radius:99px;padding:.9rem 1.8rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-family:inherit;font-size:.85rem}
+.combo{background:linear-gradient(135deg,#1d130d,#2b1408);border:1px solid rgba(255,184,0,.45);border-radius:calc(var(--rdx) + 6px);margin:0 4vw;padding:3.5rem 3rem}
+.combo h2{font-family:"Archivo Black",sans-serif;font-weight:400;font-size:clamp(1.8rem,4.5vw,3rem);margin:0 0 .6rem}
+.combo h2 em{font-style:normal;color:var(--yw)}
+.combo>p{color:var(--mut);margin:0 0 1.5rem}
+.qz-s{display:none}
+.qz-s.on{display:block;animation:fd .45s ease}
+@keyframes fd{from{opacity:0;transform:translateY(14px)}}
+.qz-s h3{font-size:1.25rem;margin:0 0 1.2rem}
+.qz-o{display:flex;gap:.8rem;flex-wrap:wrap}
+.qz-o button{background:#120b08;border:1px solid var(--ln);color:var(--ink);border-radius:999px;padding:1rem 1.8rem;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit}
+.qz-o button:hover{border-color:var(--yw);color:var(--yw)}
+.qz-r{display:none;text-align:center;padding:1rem 0}
+.qz-r.on{display:block;animation:fd .45s ease}
+.qz-r b{font-family:"Archivo Black",sans-serif;font-weight:400;font-size:clamp(2rem,6vw,3.6rem);color:var(--yw);display:block}
+.qz-r p{color:var(--mut);max-width:30rem;margin:1rem auto 1.8rem;line-height:1.7}
+.fq-i{border-bottom:1px solid var(--ln)}
+.fq-q{width:100%;background:none;border:0;color:var(--ink);display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;font-size:1.1rem;font-weight:600;cursor:pointer;text-align:left;font-family:inherit}
+.fq-q i{font-style:normal;color:var(--rd);font-size:1.5rem;transition:transform .3s}
+.fq-i.o .fq-q i{transform:rotate(45deg)}
+.fq-a{max-height:0;overflow:hidden;transition:max-height .4s ease;color:var(--mut);line-height:1.7}
+.fq-a p{margin:0 0 1.5rem;max-width:44rem}
+.ft{padding:10vh 4vw 2rem;border-top:1px solid var(--ln);margin-top:8vh}
+.ft-g{font-family:"Archivo Black",sans-serif;font-size:clamp(2.6rem,10vw,9rem);margin:0}
+.ft-g em{font-style:normal;color:var(--rd)}
+.ft-r{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin:3rem 0;padding:2rem 0;border-top:1px solid var(--ln);border-bottom:1px solid var(--ln)}
+.ft-r h4{font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mut);margin:0 0 1rem}
+.ft-r p,.ft-r a{line-height:2;color:var(--ink);text-decoration:none}
+.ft-b{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;color:var(--mut);font-size:.85rem}
+.rv{opacity:0;transform:translateY(36px);transition:opacity .8s ease,transform .8s ease}
+.rv.on{opacity:1;transform:none}
+@media(max-width:960px){.hd-n{display:none}.hd-m{display:block}.hd-n.o{display:flex;position:fixed;inset:0;background:#120b08;flex-direction:column;align-items:center;justify-content:center;gap:2rem}.card{grid-template-columns:1fr}.hro-f{grid-template-columns:repeat(2,1fr)}.hro-f div:nth-child(3){border-left:0;padding-left:0}.ft-r{grid-template-columns:1fr}.combo{padding:2.2rem 1.4rem}.cart{flex-direction:column;text-align:center}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001s !important;transition-duration:.001s !important}html{scroll-behavior:auto}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="pl" id="pl"><span>Lanchonete ai-first</span><b><i id="pln">0</i>%</b></div>
+<header class="hd" id="hd">
+<a class="hd-l" href="#topo">PODRÃO<i>.AI</i></a>
+<nav class="hd-n" id="hdn">
+<a href="#cardapio">Cardápio</a>
+<a href="#combo">Monta aí</a>
+<a href="#faq">Dúvidas</a>
+</nav>
+<a class="hd-c" href="#cardapio">Pedir agora</a>
+<button class="hd-m" id="hdm" aria-label="Abrir menu">☰</button>
+</header>
+<section class="hro" id="topo">
+<img class="hro-i" src="assets/hero.jpg" alt="Burger artesanal com fritas" fetchpriority="high">
+<div class="hro-v"></div>
+<div class="hro-x">
+<span class="hro-s">Primeira lanchonete ai-first do Brasil</span>
+<h1 class="hro-t d">Bateu a fome? <em>A IA resolve.</em></h1>
+<p class="hro-p">Monte clicando, a IA fecha a conta e manda no zap. Burger alto, fritas crocantes, entrega que chega quente.</p>
+<div class="hro-a">
+<a class="bt bt1" href="#cardapio">Montar pedido</a>
+<a class="bt bt2" href="#combo">Monta aí pra mim</a>
+</div>
+<div class="hro-f">
+<div><b>Clique</b><span>e monte o pedido</span></div>
+<div><b>IA</b><span>fecha a conta</span></div>
+<div><b>Zap</b><span>pedido pronto</span></div>
+<div><b>Quente</b><span>na sua porta</span></div>
+</div>
+</div>
+</section>
+<div class="mq" aria-hidden="true"><div class="mq-t" id="mqt">
+<span>Burger alto ★</span><span>Fritas crocantes ★</span><span>Monte clicando ★</span><span>IA no pedido ★</span><span>Entrega rápida ★</span>
+</div></div>
+<section class="mn rv">
+<p>Podrão bom é técnica, não sorte. <em>Blend pesado, pão macio e fritas que estalam,</em> com pedido que se monta sozinho.</p>
+</section>
+<section class="sc" id="cardapio">
+<div class="sc-h rv"><h2 class="d">Cardápio</h2><span>clique e some no carrinho</span></div>
+</section>
+<article class="card rv">
+<img src="assets/hero.jpg" alt="Burger artesanal com fritas rústicas" loading="lazy">
+<div class="card-t">
+<e>Carro-chefe</e><h3>Monstro.AI</h3>
+<p>Blend 180g, queijo derretido, alface, cebola roxa e molho da casa no pão macio de fermentação lenta. Acompanha fritas rústicas.</p>
+<ul><li>Pão macio de fermentação lenta</li><li>Molho secreto da casa</li><li>Fritas rústicas inclusas</li></ul>
+<f><b>R$ 34</b><div class="qty"><button data-a="Monstro.AI" data-p="34" data-m="1" aria-label="Menos">−</button><b id="q-Monstro.AI">0</b><button data-a="Monstro.AI" data-p="34" data-m="-1" aria-label="Mais">+</button></div></f>
+</div>
+</article>
+<article class="card rv">
+<img src="assets/duplo.jpg" alt="Burger duplo empilhado com fritas" loading="lazy">
+<div class="card-t">
+<e>Para fome séria</e><h3>Duplo Monstro</h3>
+<p>Dois blends, queijo em dobro e bacon crocante. Desafio aceito por poucos, terminado por menos ainda.</p>
+<ul><li>360g de blend</li><li>Bacon crocante</li><li>Fritas grandes inclusas</li></ul>
+<f><b>R$ 44</b><div class="qty"><button data-a="Duplo Monstro" data-p="44" data-m="1" aria-label="Menos">−</button><b id="q-Duplo Monstro">0</b><button data-a="Duplo Monstro" data-p="44" data-m="-1" aria-label="Mais">+</button></div></f>
+</div>
+</article>
+<article class="card rv">
+<img src="assets/mesa.jpg" alt="Mesa com burger, fritas e acompanhamentos" loading="lazy">
+<div class="card-t">
+<e>Para dividir</e><h3>Mesa.AI</h3>
+<p>2 Monstros, fritas grande para dividir, 2 refrigerantes e 2 sobremesas do dia. Programa fechado.</p>
+<ul><li>Serve 2 pessoas</li><li>Bebidas inclusas</li><li>Sobremesa do dia</li></ul>
+<f><b>R$ 79</b><div class="qty"><button data-a="Mesa.AI" data-p="79" data-m="1" aria-label="Menos">−</button><b id="q-Mesa.AI">0</b><button data-a="Mesa.AI" data-p="79" data-m="-1" aria-label="Mais">+</button></div></f>
+</div>
+</article>
+<section class="combo rv" id="combo" style="margin-top:10vh">
+<h2 class="d">Não sabe? <em>A IA monta.</em></h2>
+<p>2 perguntas e sai o combo ideal com o pedido pronto para enviar.</p>
+<div class="qz-s on" id="qs1">
+<h3>Qual o tamanho da fome?</h3>
+<div class="qz-o"><div class="qz-o" style="display:flex;gap:.8rem;flex-wrap:wrap">
+<button data-f="leve">Só beliscar</button>
+<button data-f="normal">Fome normal</button>
+<button data-f="monstra">Fome monstra</button>
+</div></div>
+</div>
+<div class="qz-s" id="qs2">
+<h3>Vai dividir?</h3>
+<div class="qz-o"><div class="qz-o" style="display:flex;gap:.8rem;flex-wrap:wrap">
+<button data-s="sozinho">Sozinho</button>
+<button data-s="duo">Em dupla</button>
+</div></div>
+</div>
+<div class="qz-r" id="qr">
+<b id="qres">Monstro.AI</b>
+<p id="qtxt"></p>
+<a class="bt bt1" id="qzap" href="#" target="_blank" rel="noopener">Pedir esse no zap →</a>
+</div>
+</section>
+<div class="cart" id="cart">
+<div><b id="ctotal">R$ 0</b><br><span id="citems">Carrinho vazio, clique nos +</span></div>
+<button id="cgo">Fechar no zap →</button>
+</div>
+<section class="sc" id="faq">
+<div class="sc-h rv"><h2 class="d">Dúvidas comuns</h2><span>faq</span></div>
+<div class="rv">
+<div class="fq-i"><button class="fq-q">Entregam onde?<i>+</i></button><div class="fq-a"><p>Na região central com taxa conforme o bairro. O valor aparece antes de confirmar no zap.</p></div></div>
+<div class="fq-i"><button class="fq-q">Quanto tempo demora?<i>+</i></button><div class="fq-a"><p>Média de 35 minutos. Pico de sexta e sábado pode esticar, avisamos antes.</p></div></div>
+<div class="fq-i"><button class="fq-q">Tem opção vegetariana?<i>+</i></button><div class="fq-a"><p>Tem. Troque o blend por legumes grelhados em qualquer burger sem custo extra.</p></div></div>
+<div class="fq-i"><button class="fq-q">Como pago?<i>+</i></button><div class="fq-a"><p>Pix, cartão na entrega ou link de pagamento enviado no zap.</p></div></div>
+</div>
+</section>
+<footer class="ft">
+<h2 class="ft-g d">Bora <em>comer?</em></h2>
+<div class="ft-r">
+<div><h4>Casa</h4><p>Burger alto<br>Fritas crocantes<br>Sobremesa do dia</p></div>
+<div><h4>Pede</h4><p><a href="https://wa.me/5511999990000" target="_blank" rel="noopener">WhatsApp</a><br><a href="#topo">Voltar ao topo ↑</a></p></div>
+<div><h4>IA</h4><p>Monta seu combo<br>Fecha sua conta<br>Sem app, sem cadastro</p></div>
+</div>
+<div class="ft-b"><span>© <i id="yr">2026</i> Podrão.AI.</span><span>Fotos: Unsplash (uso livre).</span></div>
+</footer>
+<script>
+(function(){
+"use strict";
+var $=function(s,c){return (c||document).querySelector(s)};
+var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+/* assistente */
+var KB=[
+{k:["entrega","entregar","bairro","taxa"],a:"Entregamos na região central, taxa conforme o bairro, avisada antes de confirmar."},
+{k:["tempo","demora","quanto tempo"],a:"Média de 35 minutos. Em pico avisamos antes."},
+{k:["vegetariano","veggie","sem carne"],a:"Troque o blend por legumes grelhados sem custo extra."},
+{k:["pagamento","pagar","pix","cartão"],a:"Pix, cartão na entrega ou link enviado no zap."},
+{k:["preço","preco","valor","quanto custa"],a:"Monstro R$ 34, Duplo R$ 44, Mesa para 2 R$ 79."},
+{k:["combo","monta","fome","sugestão"],a:"Use o Monta Aí aqui na página: 2 perguntas e sai o combo ideal."}
+];
+var FB='Não sei ainda. <a href="https://wa.me/5511999990000" target="_blank" rel="noopener">Chama no zap</a> que respondemos.';
+var css="#wxb{position:fixed;right:1.2rem;bottom:1.2rem;z-index:150;width:60px;height:60px;border-radius:50%;border:0;background:#ffb800;color:#120b08;font-size:1.5rem;cursor:pointer;font-family:inherit;box-shadow:0 8px 30px rgba(0,0,0,.4)}#wxp{position:fixed;right:1.2rem;bottom:5.2rem;z-index:150;width:min(350px,90vw);background:#151515;color:#f5f5f5;border:1px solid rgba(255,255,255,.15);border-radius:18px;overflow:hidden;display:none;flex-direction:column}#wxp.on{display:flex}#wxh{padding:.9rem 1.1rem;font-weight:800;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;background:#ffb800;color:#120b08;display:flex;justify-content:space-between;align-items:center}#wxx{cursor:pointer}#wxm{padding:1rem 1.1rem;max-height:300px;overflow-y:auto;display:flex;flex-direction:column;gap:.6rem;font-size:.92rem;line-height:1.55}#wxm .u{align-self:flex-end;background:rgba(255,255,255,.12);border-radius:12px 12px 3px 12px;padding:.6rem .9rem;max-width:85%}#wxm .b{align-self:flex-start;background:rgba(255,255,255,.07);border-radius:12px 12px 12px 3px;padding:.6rem .9rem;max-width:90%}#wxm a{color:#ffb800}#wxf{display:flex;border-top:1px solid rgba(255,255,255,.12)}#wxi{flex:1;background:none;border:0;color:#f5f5f5;padding:.9rem 1rem;font-size:.95rem;font-family:inherit;outline:none;min-width:0}#wxs{background:none;border:0;color:#ffb800;font-size:1.3rem;padding:0 1rem;cursor:pointer}";
+var st=document.createElement("style");st.textContent=css;document.head.appendChild(st);
+var w=document.createElement("div");w.innerHTML='<button id="wxb" aria-label="Perguntar">✦</button><div id="wxp"><div id="wxh"><span>Assistente</span><span id="wxx">×</span></div><div id="wxm"></div><div id="wxf"><input id="wxi" placeholder="Pergunte..." autocomplete="off"><button id="wxs" aria-label="Enviar">→</button></div></div>';document.body.appendChild(w);
+var said=false;
+function say(t,who){var m=document.getElementById("wxm");var d=document.createElement("div");d.className=who;d.textContent=t;m.appendChild(d);m.scrollTop=m.scrollHeight}
+function answer(t){var l=t.toLowerCase(),best=null,bs=0;KB.forEach(function(e){var s=0;e.k.forEach(function(k){if(l.indexOf(k)>=0)s+=k.length});if(s>bs){bs=s;best=e}});say(best?best.a:FB,"b")}
+function send(){var i=document.getElementById("wxi");var t=i.value.trim();if(!t)return;say(t,"u");i.value="";setTimeout(function(){answer(t)},350)}
+document.getElementById("wxb").onclick=function(){var p=document.getElementById("wxp");p.classList.toggle("on");if(p.classList.contains("on")&&!said){said=true;say("Olá! Pergunte sobre entrega, preço ou peça o combo ideal.","b")}};
+document.getElementById("wxx").onclick=function(){document.getElementById("wxp").classList.remove("on")};
+document.getElementById("wxs").onclick=send;
+document.getElementById("wxi").addEventListener("keydown",function(e){if(e.key==="Enter")send()});
+/* carrinho */
+var CART={};
+var BRL=function(v){return v.toLocaleString("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0})};
+function draw(){
+var tot=0,items=[];
+Object.keys(CART).forEach(function(k){var it=CART[k];if(it.q>0){tot+=it.q*it.p;items.push(it.q+"x "+k)}});
+$("#ctotal").textContent=BRL(tot);
+$("#citems").textContent=items.length?items.join(", "):"Carrinho vazio, clique nos +";
+Object.keys(CART).forEach(function(k){var el=document.getElementById("q-"+k);if(el)el.textContent=CART[k].q});
+}
+$$(".qty button").forEach(function(b){b.addEventListener("click",function(){
+var a=b.getAttribute("data-a"),p=parseInt(b.getAttribute("data-p"),10),m=parseInt(b.getAttribute("data-m"),10);
+if(!CART[a])CART[a]={q:0,p:p};
+CART[a].q=Math.max(0,CART[a].q+(m<0?1:-1));draw();
+})});
+$("#cgo").addEventListener("click",function(){
+var items=[];Object.keys(CART).forEach(function(k){if(CART[k].q>0)items.push(CART[k].q+"x "+k+" ("+BRL(CART[k].q*CART[k].p)+")")});
+if(!items.length){alert("Monte seu pedido clicando nos + primeiro.");return}
+var msg="Olá! Meu pedido: "+items.join(", ")+". Total: "+$("#ctotal").textContent+".";
+window.open("https://wa.me/5511999990000?text="+encodeURIComponent(msg),"_blank");
+});
+/* combo IA */
+var CF="",CS="";
+function cstep(id){$$(".qz-s").forEach(function(s){s.classList.remove("on")});var el=$(id);if(el)el.classList.add("on")}
+$$("#qs1 button").forEach(function(b){b.addEventListener("click",function(){CF=b.getAttribute("data-f");cstep("#qs2")})});
+$$("#qs2 button").forEach(function(b){b.addEventListener("click",function(){
+CS=b.getAttribute("data-s");
+$$(".qz-s").forEach(function(s){s.classList.remove("on")});
+var rec="Monstro.AI",why="O equilíbrio perfeito entre fome e juízo.";
+if(CF==="monstra"||CS==="duo"){rec="Mesa.AI";why="Para fome monstra ou dupla, o combo para 2 sai mais barato que separados."}
+else if(CF==="leve"){rec="Monstro.AI";why="Leve mas completo: burger alto com fritas na medida."}
+$("#qres").textContent=rec;$("#qtxt").textContent=why;
+$("#qzap").href="https://wa.me/5511999990000?text="+encodeURIComponent("Olá! A IA indicou o "+rec+" (fome "+CF+", "+CS+"). Quero pedir!");
+$("#qr").classList.add("on");
+})});
+/* base */
+var pl=$("#pl"),pln=$("#pln"),n=0;
+var rm=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+function hidePl(){pl.classList.add("g");document.body.style.overflow="";setTimeout(function(){pl.remove()},800)}
+if(rm){hidePl()}else{document.body.style.overflow="hidden";var t=setInterval(function(){n=Math.min(100,n+Math.ceil(Math.random()*14));pln.textContent=n;if(n>=100){clearInterval(t);setTimeout(hidePl,250)}},110)}
+var hd=$("#hd"),hdn=$("#hdn");
+window.addEventListener("scroll",function(){hd.classList.toggle("f",window.scrollY>40)},{passive:true});
+$("#hdm").addEventListener("click",function(){hdn.classList.toggle("o")});
+$$("#hdn a").forEach(function(a){a.addEventListener("click",function(){hdn.classList.remove("o")})});
+var mqt=$("#mqt");mqt.innerHTML+=mqt.innerHTML;
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("on");io.unobserve(e.target)}})},{threshold:.12});
+$$(".rv").forEach(function(el){io.observe(el)});
+$$(".fq-i").forEach(function(it){var q=$(".fq-q",it),a=$(".fq-a",it);q.addEventListener("click",function(){var open=it.classList.contains("o");$$(".fq-i.o").forEach(function(o){o.classList.remove("o");$(".fq-a",o).style.maxHeight="0"});if(!open){it.classList.add("o");a.style.maxHeight=a.scrollHeight+"px"}})});
+$("#yr").textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
