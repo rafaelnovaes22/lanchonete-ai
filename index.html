@@ -198,12 +198,12 @@ a{color:inherit}
 <div class="qz-r" id="qr">
 <b id="qres">Monstro.AI</b>
 <p id="qtxt"></p>
-<a class="bt bt1" id="qzap" href="#" target="_blank" rel="noopener">Pedir esse no zap →</a>
+<a class="bt bt1" id="qzap" href="#contact-status" rel="noopener" aria-disabled="true">Contato indisponível</a>
 </div>
 </section>
 <div class="cart" id="cart">
 <div><b id="ctotal">R$ 0</b><br><span id="citems">Carrinho vazio, clique nos +</span></div>
-<button id="cgo">Fechar no zap →</button>
+<button id="cgo" disabled aria-describedby="contact-status">Pedidos indisponíveis</button>
 </div>
 <section class="sc" id="faq">
 <div class="sc-h rv"><h2 class="d">Dúvidas comuns</h2><span>faq</span></div>
@@ -215,10 +215,11 @@ a{color:inherit}
 </div>
 </section>
 <footer class="ft">
+<p id="contact-status" role="status" tabindex="-1" data-contact-status="unavailable">Contato temporariamente indisponível. Este site não está recebendo pedidos ou agendamentos.</p>
 <h2 class="ft-g d">Bora <em>comer?</em></h2>
 <div class="ft-r">
 <div><h4>Casa</h4><p>Burger alto<br>Fritas crocantes<br>Sobremesa do dia</p></div>
-<div><h4>Pede</h4><p><a href="https://wa.me/5511999990000" target="_blank" rel="noopener">WhatsApp</a><br><a href="#topo">Voltar ao topo ↑</a></p></div>
+<div><h4>Pede</h4><p><a href="#contact-status" aria-disabled="true" rel="noopener">Contato indisponível</a><br><a href="#topo">Voltar ao topo ↑</a></p></div>
 <div><h4>IA</h4><p>Monta seu combo<br>Fecha sua conta<br>Sem app, sem cadastro</p></div>
 </div>
 <div class="ft-b"><span>© <i id="yr">2026</i> Podrão.AI.</span><span>Fotos: Unsplash (uso livre).</span></div>
@@ -237,7 +238,7 @@ var KB=[
 {k:["preço","preco","valor","quanto custa"],a:"Monstro R$ 34, Duplo R$ 44, Mesa para 2 R$ 79."},
 {k:["combo","monta","fome","sugestão"],a:"Use o Monta Aí aqui na página: 2 perguntas e sai o combo ideal."}
 ];
-var FB='Não sei ainda. <a href="https://wa.me/5511999990000" target="_blank" rel="noopener">Chama no zap</a> que respondemos.';
+var FB="O contato está temporariamente indisponível. Nenhuma mensagem foi enviada.";
 var css="#wxb{position:fixed;right:1.2rem;bottom:1.2rem;z-index:150;width:60px;height:60px;border-radius:50%;border:0;background:#ffb800;color:#120b08;font-size:1.5rem;cursor:pointer;font-family:inherit;box-shadow:0 8px 30px rgba(0,0,0,.4)}#wxp{position:fixed;right:1.2rem;bottom:5.2rem;z-index:150;width:min(350px,90vw);background:#151515;color:#f5f5f5;border:1px solid rgba(255,255,255,.15);border-radius:18px;overflow:hidden;display:none;flex-direction:column}#wxp.on{display:flex}#wxh{padding:.9rem 1.1rem;font-weight:800;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;background:#ffb800;color:#120b08;display:flex;justify-content:space-between;align-items:center}#wxx{cursor:pointer}#wxm{padding:1rem 1.1rem;max-height:300px;overflow-y:auto;display:flex;flex-direction:column;gap:.6rem;font-size:.92rem;line-height:1.55}#wxm .u{align-self:flex-end;background:rgba(255,255,255,.12);border-radius:12px 12px 3px 12px;padding:.6rem .9rem;max-width:85%}#wxm .b{align-self:flex-start;background:rgba(255,255,255,.07);border-radius:12px 12px 12px 3px;padding:.6rem .9rem;max-width:90%}#wxm a{color:#ffb800}#wxf{display:flex;border-top:1px solid rgba(255,255,255,.12)}#wxi{flex:1;background:none;border:0;color:#f5f5f5;padding:.9rem 1rem;font-size:.95rem;font-family:inherit;outline:none;min-width:0}#wxs{background:none;border:0;color:#ffb800;font-size:1.3rem;padding:0 1rem;cursor:pointer}";
 var st=document.createElement("style");st.textContent=css;document.head.appendChild(st);
 var w=document.createElement("div");w.innerHTML='<button id="wxb" aria-label="Perguntar">✦</button><div id="wxp"><div id="wxh"><span>Assistente</span><span id="wxx">×</span></div><div id="wxm"></div><div id="wxf"><input id="wxi" maxlength="200" placeholder="Pergunte..." autocomplete="off"><button id="wxs" aria-label="Enviar">→</button></div></div>';document.body.appendChild(w);
@@ -272,7 +273,7 @@ $("#cgo").addEventListener("click",function(){
 var items=[];Object.keys(CART).forEach(function(k){if(CART[k].q>0)items.push(CART[k].q+"x "+k+" ("+BRL(CART[k].q*CART[k].p)+")")});
 if(!items.length){alert("Monte seu pedido clicando nos + primeiro.");return}
 var msg="Olá! Meu pedido: "+items.join(", ")+". Total: "+$("#ctotal").textContent+".";
-window.open("https://wa.me/5511999990000?text="+encodeURIComponent(msg),"_blank");
+document.getElementById("contact-status").focus();
 });
 /* combo IA */
 var CF="",CS="";
@@ -285,7 +286,7 @@ var rec="Monstro.AI",why="O equilíbrio perfeito entre fome e juízo.";
 if(CF==="monstra"||CS==="duo"){rec="Mesa.AI";why="Para fome monstra ou dupla, o combo para 2 sai mais barato que separados."}
 else if(CF==="leve"){rec="Monstro.AI";why="Leve mas completo: burger alto com fritas na medida."}
 $("#qres").textContent=rec;$("#qtxt").textContent=why;
-$("#qzap").href="https://wa.me/5511999990000?text="+encodeURIComponent("Olá! A IA indicou o "+rec+" (fome "+CF+", "+CS+"). Quero pedir!");
+$("#qzap").href="#contact-status";
 $("#qr").classList.add("on");
 })});
 /* base */
